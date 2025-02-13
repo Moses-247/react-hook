@@ -1,20 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Filter = ({ filterTitle, filterRating, setFilterTitle, setFilterRating }) => {
+const Filter = ({ onFilter }) => {
+  const [title, setTitle] = useState('');
+  const [rating, setRating] = useState('');
+
+  const handleFilter = () => {
+    onFilter({ title, rating });
+  };
+
   return (
     <div className="filter">
       <input
         type="text"
         placeholder="Filter by title"
-        value={filterTitle}
-        onChange={(e) => setFilterTitle(e.target.value)}
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
       />
       <input
         type="number"
         placeholder="Filter by rating"
-        value={filterRating}
-        onChange={(e) => setFilterRating(e.target.value)}
+        value={rating}
+        onChange={(e) => setRating(e.target.value)}
       />
+      <button onClick={handleFilter}>Filter</button>
     </div>
   );
 };
